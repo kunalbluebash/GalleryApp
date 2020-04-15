@@ -1,0 +1,2 @@
+module ImagegalsHelper
+end
