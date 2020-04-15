@@ -41,19 +41,19 @@
   <p id="notice"><%= notice %></p>
   <div class="container">
     <h1 class="text-center mt-3 mb-3">Gallery App</h1>
-    <div class="d-flex flex-row flex-wrap justify-content-between">
+    <div class="d-flex flex-row flex-wrap justify-content-start">
       <% @imagegals.each do |imagegal| %>
-        <div class="card mb-5" style="width: 15rem;">
+        <div class="card mb-5 ml-4" style="width: 15rem;">
             <%= image_tag(imagegal.image, class:'card-img-top img-fluid')%>
             <div class="card-body">
                 <h5 class="card-title black-color"><%= imagegal.title %></h5>
                 <p class="card-text"><%= imagegal.caption %></p>
-                
+                <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
             </div>
         </div>  
       <% end %>
     </div>
-    <div class="d-flex flex-row"><%= paginate @imagegals %></div>
+    <div class="d-flex flex-row justify-content-center"><%= paginate @imagegals %></div>
   </div>
 
   <br>
