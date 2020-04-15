@@ -35,10 +35,7 @@
       <%= @imagegal.title %>
     </p>
     <div>
-     
-      <% (0...@imagegal.images.count).each do |image| %>
-        <%= image_tag(@imagegal.images[]), class:'img-fluid' %>
-      <% end %>
+      <%= link_to image_tag(@imagegal.image, style:'width:300px', class:'img-fluid'),imagegals_path %>
     </div>
     <p class="white">
       <strong>Caption:</strong>

@@ -1,5 +1,5 @@
 class Imagegal < ApplicationRecord
-    has_many_attached :images
+    has_one_attached :image
     belongs_to :user
     paginates_per 4
 
