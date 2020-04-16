@@ -38,7 +38,7 @@
 
 
 
-  <p id="notice"><%= notice %></p>
+  <h5 id="notice"><%= notice %></h5>
   <div class="container">
     <h1 class="text-center mt-3 mb-3">Gallery App</h1>
     <div class="d-flex flex-row flex-wrap justify-content-start">
@@ -49,6 +49,7 @@
                 <h5 class="card-title black-color"><%= imagegal.title %></h5>
                 <p class="card-text"><%= imagegal.caption %></p>
                 <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
+                 <p class="card-text"><b>Published By:</b> <%= imagegal.user_id %></p>
             </div>
         </div>  
       <% end %>

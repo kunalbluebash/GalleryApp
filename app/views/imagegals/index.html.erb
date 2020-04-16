@@ -28,7 +28,7 @@
   </nav>
 
 
-  <p id="notice"><%= notice %></p>
+  <h4 id="notice"><%= notice %></h4>
 
   <div class="container">
     <h1 class="text-center mt-3 mb-3">Gallery App</h1>
@@ -40,6 +40,7 @@
                 <h5 class="card-title black-color"><%= imagegal.title %></h5>
                 <p class="card-text"><%= imagegal.caption %></p>
                 <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
+                <p class="card-text"><b>Published By:</b> <%= current_user.email.split('@')[0] %></p>
                 <p class="card-text d-flex justify-content-around"><%= link_to 'Edit', edit_imagegal_path(imagegal), :class => 'btn btn-warning ' %>
                 <%= link_to 'Show', imagegal, :class => 'btn btn-warning' %>
                 </p>
