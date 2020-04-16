@@ -10,7 +10,14 @@ h1,h2,h3,h4,h5,h6,label,.white,td,th{
 .black-color{
     color:#000000;
 }
-
+.tags{
+    text-decoration: none;
+    color: black;
+}
+.tags:hover{
+    color:blue;
+    text-decoration: none;
+}
 
 
  

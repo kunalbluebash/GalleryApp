@@ -34,7 +34,7 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'devise'
 gem 'kaminari'
-
+gem 'acts-as-taggable-on', '~> 6.0' #must be this version for Rails5
 
 
 group :development, :test do

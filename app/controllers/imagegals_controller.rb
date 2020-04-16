@@ -1,6 +1,6 @@
 class ImagegalsController < ApplicationController
   before_action :set_imagegal, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:galleryimage]
+  before_action :authenticate_user!, except: [:galleryimage, :tagged]
   # GET /imagegals
   # GET /imagegals.json
   def index
@@ -69,6 +69,15 @@ class ImagegalsController < ApplicationController
     end
   end
 
+  def tagged
+    if params[:tag].present?
+      @imagegals = Imagegal.tagged_with(params[:tag])
+      render :galleryimage
+    else
+      @imagegals = Imagegal.all
+    end
+  end
+
   # DELETE /imagegals/1
   # DELETE /imagegals/1.json
   def destroy
@@ -103,6 +112,6 @@ class ImagegalsController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def imagegal_params
-      params.require(:imagegal).permit(:title, :caption, :image)
+      params.require(:imagegal).permit(:title, :caption, :image, :tag_list)
     end
 end
