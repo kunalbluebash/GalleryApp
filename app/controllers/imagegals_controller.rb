@@ -72,7 +72,20 @@ class ImagegalsController < ApplicationController
   # DELETE /imagegals/1
   # DELETE /imagegals/1.json
   def destroy
-    @imagegal.destroy
+    
+    if params[:attachment_id]
+      @imagegal.files.find_by_id(params[:attachment_id]).purge
+    
+    # handle purge all
+    elsif params[:purge]
+      @imagegal.files.purge
+      
+    # handle destroy resource
+    else
+      @imagegal.destroy
+      
+    end
+    
     respond_to do |format|
       format.html { redirect_to imagegals_url, notice: 'Imagegal was successfully destroyed.' }
       format.json { head :no_content }
