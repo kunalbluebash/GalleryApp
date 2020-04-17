@@ -15,6 +15,7 @@ class ImagegalsController < ApplicationController
   def galleryimage
     if current_user
       @imagegals = current_user.imagegals.page(params[:page])
+      
     else
       @imagegals = Imagegal.all.page(params[:page])
     end
@@ -25,6 +26,7 @@ class ImagegalsController < ApplicationController
       render file: "public/404.html", status: :not_found
     end
   end
+  
   
 
   # GET /imagegals/new
@@ -69,14 +71,7 @@ class ImagegalsController < ApplicationController
     end
   end
 
-  def tagged
-    if params[:tag].present?
-      @imagegals = Imagegal.tagged_with(params[:tag])
-      render :galleryimage
-    else
-      @imagegals = Imagegal.all
-    end
-  end
+  
 
   # DELETE /imagegals/1
   # DELETE /imagegals/1.json
