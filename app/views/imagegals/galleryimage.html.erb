@@ -15,14 +15,15 @@
                 <p class="card-text"><%= imagegal.caption %></p>
                 <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
                 <p class="card-text"><b>Updated On:</b> <%= imagegal.updated_at.to_s.split(' ')[0] %></p>
-                <p class="card-text"><b>Published By:</b> <%= imagegal.user_id %></p>
-                <p class="card-text">Tags: <%= imagegal.tag_list %>
+                <p class="card-text"><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></p>
+                <p class="card-text"><b>Tags:</b> <%= imagegal.tag_list %>
                   </p>
             </div>
         </div>  
       <% end %>
       
     </div>
+    
     <div class="d-flex flex-row justify-content-center"><%= paginate @imagegals %></div>
   </div>
 
