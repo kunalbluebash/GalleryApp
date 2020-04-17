@@ -70,7 +70,15 @@ class ImagegalsController < ApplicationController
       end
     end
   end
-
+  
+  def tagged
+    if params[:tag].present?
+      @imagegals= Imagegal.tagged_with(params[:tag]).page( params[:page])
+      render :galleryimage
+   else
+      @imagegalleries = Imagegal.all
+    end
+  end
   
 
   # DELETE /imagegals/1

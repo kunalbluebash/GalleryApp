@@ -7,11 +7,8 @@ Rails.application.routes.draw do
  
   # default_url_options :host => "localhost:3000"
 
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
-
+  devise_for :users, :controllers => {:registrations => "registrations"}
   get "/galleryimage" => "imagegals#galleryimage"
-  
+  get 'tags/:tag', to: 'imagegals#tagged',as: :tag
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
