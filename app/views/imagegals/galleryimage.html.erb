@@ -5,7 +5,10 @@
 
   <h5 id="notice"><%= notice %></h5>
   <div class="container">
-    <h1 class="text-center mt-3 mb-3">Gallery App</h1>
+    <h1 class="text-center my-5">Gallery App</h1>
+    <% if current_user %>
+      <h4 class="mb-5">Welcome <%= current_user.email.split('@')[0]%></h4>
+    <% end %>
     <div class="d-flex flex-row flex-wrap justify-content-start">
       <% @imagegals.each do |imagegal| %>
         <div class="card mb-5 ml-4" style="width: 15rem;">

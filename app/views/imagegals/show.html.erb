@@ -16,7 +16,7 @@
       <%= @imagegal.caption %>
     </p>
     <p class="white">Tags: <% @imagegal.tag_list.each do |tag| %>
-                    <%= link_to tag, tagged_path(tag: tag) %>
+                    <%= link_to tag, tag_path(tag: tag) %>
                   <% end %></p>
   </div>
   <%= link_to 'Edit', edit_imagegal_path(@imagegal), :class => 'btn btn-warning'  %> |
