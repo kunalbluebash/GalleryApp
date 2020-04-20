@@ -1,7 +1,7 @@
 class Imagegal < ApplicationRecord
     has_one_attached :image
     belongs_to :user
-    paginates_per 12
+    paginates_per 8
 
     acts_as_taggable_on :tags
     has_many :tags
