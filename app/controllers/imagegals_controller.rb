@@ -4,7 +4,11 @@ class ImagegalsController < ApplicationController
   # GET /imagegals
   # GET /imagegals.json
   def index
-    @imagegals = current_user.imagegals.page(params[:page])
+    if current_user && current_user.admin?
+      @imagegals = Imagegal.all.page(params[:page])
+    elsif current_user
+      @imagegals = current_user.imagegals.page(params[:page])
+    end
   end
 
   # GET /imagegals/1
@@ -13,13 +17,15 @@ class ImagegalsController < ApplicationController
     
   end
   def galleryimage
-    if current_user
+    
+    if current_user && current_user.admin?
+      @imagegals = Imagegal.all.page(params[:page])
+    elsif current_user
       @imagegals = current_user.imagegals.page(params[:page])
-      
     else
       @imagegals = Imagegal.all.page(params[:page])
     end
-    
+
     if valid_page?
       render template: "imagegals/galleryimage"
     else
