@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  */
- $body-bg: #000;
+ $navbar-light-active-color : rgba(255, 255, 255, 0.9);
+
 @import "bootstrap";
