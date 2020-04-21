@@ -32,18 +32,30 @@
           
         </ul>
         <ul class="navbar-nav  ">
-            <li class="nav-item">
+             <li class="nav-item">    
+            <%= form_tag tagged_path(tag: tag), :class => 'form-inline', :method => :get do %>
+            <%= text_field_tag :tag ,params[:tag], placeholder: "Search for Tags", :class => 'form-control' %>
+              <%= submit_tag 'Search' , :class => 'btn btn-info', :name =>nil %>
+            <% end %>
+          <li>
+            <li class="nav-item ml-3">
                 <%= link_to "Sign out", destroy_user_session_path, :method => :get, class:"btn btn-info"%>
             </li>
         </ul>
       <% else %>
         <ul class="navbar-nav ">
-          <li class="nav-item">
+          <li class="nav-item mr-3">
               <%= link_to "Log in", new_user_session_path, :class => 'btn btn-info' %>
               <%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-info'  %>
               <%= link_to "Forget Password", new_user_password_path, :class => 'btn btn-info' %>
               
           </li>
+          <li class="nav-item">    
+            <%= form_tag tagged_path(tag: tag), :class => 'form-inline', :method => :get do %>
+            <%= text_field_tag :tag ,params[:tag], placeholder: "Search for Tags", :class => 'form-control' %>
+              <%= submit_tag 'Search' , :class => 'btn btn-info', :name =>nil %>
+            <% end %>
+          <li>
         </ul>
       <% end %>
     </div>

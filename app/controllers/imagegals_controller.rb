@@ -82,7 +82,7 @@ class ImagegalsController < ApplicationController
       @imagegals= Imagegal.tagged_with(params[:tag]).page( params[:page])
       render :galleryimage
    else
-      @imagegalleries = Imagegal.all
+      @imagegalleries = Imagegal.all.page( params[:page]) 
     end
   end
   
