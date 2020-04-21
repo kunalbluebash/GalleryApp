@@ -39,6 +39,7 @@
             <div class="media-body">
               <h5 class="mt-0"><%= imagegal.title %></h5>
               <%= imagegal.caption %>
+              <p><i><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></i></p>
             </div>
           </div>
         <% end %>
