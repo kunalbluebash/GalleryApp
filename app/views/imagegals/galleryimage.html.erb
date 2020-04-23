@@ -14,7 +14,7 @@
         <div class="card mb-5 mr-4 shadow bg-white rounded" style="width: 15rem;">
             <%= image_tag(imagegal.image, class:'card-img-top img-fluid') if imagegal.image.attached? %>
             <div class="card-body">
-                <h5 class="card-title black-color"><%= imagegal.title %></h5>
+                <h5 class="card-title"><%= imagegal.title %></h5>
                 <p class="card-text"><%= imagegal.caption %></p>
                 <p class="card-text"> <b>Tags :</b> <%= imagegal.tag_list %></p>
                 <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>

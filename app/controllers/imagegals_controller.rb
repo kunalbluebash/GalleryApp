@@ -4,11 +4,17 @@ class ImagegalsController < ApplicationController
   # GET /imagegals
   # GET /imagegals.json
   def index
+    @q = Imagegal.ransack(params[:q])
     if current_user && current_user.admin?
       @imagegals = Imagegal.all.page(params[:page])
+      @imagegals = @q.result.page(params[:page])
     elsif current_user
       @imagegals = current_user.imagegals.page(params[:page])
+      @q = current_user.imagegals.ransack(params[:q])
+      @imagegals = @q.result.page(params[:page])
     end
+    
+    
   end
 
   # GET /imagegals/1
@@ -80,8 +86,16 @@ class ImagegalsController < ApplicationController
   def tagged
     if params[:tag].present?
       @imagegals= Imagegal.tagged_with(params[:tag]).page( params[:page])
-      render :galleryimage
-   else
+      if current_user && current_user.admin?
+        @q = Imagegal.ransack(params[:q])
+        @imagegals = @q.result.tagged_with(params[:tag]).page(params[:page])
+      elsif current_user
+        @q = current_user.imagegals.ransack(params[:q])
+        @imagegals = @q.result.tagged_with(params[:tag]).page(params[:page])
+      end
+     
+      render :index
+    else
       @imagegalleries = Imagegal.all.page( params[:page]) 
     end
   end

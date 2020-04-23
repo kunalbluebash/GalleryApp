@@ -6,30 +6,54 @@
     <% if current_user %>
       <h4 class="mb-5">Welcome <%= current_user.email.split('@')[0]%></h4>
     <% end %>
-    <div class="d-flex flex-row flex-wrap justify-content-start">
-      <% @imagegals.each do |imagegal| %>
-        <div class="card mb-5 mr-3" style="width: 15rem;">
-            <%= image_tag(imagegal.image, class:'card-img-top img-fluid') if imagegal.image.attached? %>
-            <div class="card-body">
-                <h5 class="card-title black-color"><%= imagegal.title %></h5>
-                <p class="card-text"><%= imagegal.caption %></p>
-                <p class="card-text"> <b>Tags :</b> <%= imagegal.tag_list %></p>
-                <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
-                <p class="card-text"><b>Updated On:</b> <%= imagegal.updated_at.to_s.split(' ')[0] %></p>
-                <p class="card-text"><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></p>
-                
-                <p class="card-text d-flex justify-content-start"><%= link_to 'Edit', edit_imagegal_path(imagegal), :class => 'btn btn-warning mr-1' %>
-                <%= link_to 'Show', imagegal, :class => 'btn btn-warning mr-1' %>
-                <%= link_to 'Destroy', imagegal, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger mr-1' %>
-                </p>
-                
-            </div>
-        </div>  
+    <div class="col-lg-9 float-left">
+      <div class="d-flex flex-row flex-wrap justify-content-start">
+        <% @imagegals.each do |imagegal| %>
+          <div class="card mb-5 mr-3" style="width: 15rem;">
+              <%= image_tag(imagegal.image, class:'card-img-top img-fluid') if imagegal.image.attached? %>
+              <div class="card-body">
+                  <h5 class="card-title"><%= imagegal.title %></h5>
+                  <p class="card-text"><%= imagegal.caption %></p>
+                  <p class="card-text"> <b>Tags :</b> <%= imagegal.tag_list %></p>
+                  <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
+                  <p class="card-text"><b>Updated On:</b> <%= imagegal.updated_at.to_s.split(' ')[0] %></p>
+                  <p class="card-text"><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></p>
+                  
+                  <p class="card-text d-flex justify-content-start"><%= link_to 'Edit', edit_imagegal_path(imagegal), :class => 'btn btn-warning mr-1' %>
+                  <%= link_to 'Show', imagegal, :class => 'btn btn-warning mr-1' %>
+                  <%= link_to 'Destroy', imagegal, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger mr-1' %>
+                  </p>
+                  
+              </div>
+          </div>  
+        <% end %>
+      </div>
+      
+      <div class="d-flex flex-row justify-content-center"><%= paginate @imagegals %></div>
+    </div>
+    <div class="col-lg-3 float-right">
+      <h3>Filters By Title and Caption</h3>
+      <%= search_form_for @q, :class => 'p-3 border border-secondary' do |f| %>
+      
+        <div class="form-group">
+          <%= f.label :title ,"Title of Post", :class => 'mr-2' %>
+          <%= f.search_field :title_cont, placeholder: "Search By Title", :class => 'form-control ' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :caption ,"Caption of Post", :class => 'mr-2' %>
+          <%= f.search_field :caption_cont, placeholder: "Search By Caption", :class => 'form-control ' %>
+        </div>
+        <%= f.submit 'Search', :class => 'btn btn-info mt-2' %>
+        <% end %>
+      <h3 class="mt-3">Filters By Tags</h3>
+      <%= form_tag tagged_path(tag: tag), :class => 'p-3 border border-secondary', :method => :get do %>
+        <div class="form-group">
+          <%= text_field_tag :tag ,params[:tag], placeholder: "Search for Tags", :required => 'required', :class => 'form-control' %>
+        </div>
+          <%= submit_tag 'Search' , :class => 'btn btn-info', :name =>nil %>
+        
       <% end %>
     </div>
-    
-    <div class="d-flex flex-row justify-content-center"><%= paginate @imagegals %></div>
-    
   </div>
 </body>
 
