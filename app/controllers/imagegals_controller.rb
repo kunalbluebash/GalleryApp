@@ -60,6 +60,7 @@ class ImagegalsController < ApplicationController
     @imagegal.user = current_user
     respond_to do |format|0
       if @imagegal.save
+        ImagegalMailer.new_imagegal(@imagegal).deliver_now
         format.html { redirect_to @imagegal, notice: 'Imagegal was successfully created.' }
         format.json { render :show, status: :created, location: @imagegal }
       else

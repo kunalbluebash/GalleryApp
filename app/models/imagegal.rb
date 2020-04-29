@@ -9,4 +9,5 @@ class Imagegal < ApplicationRecord
     validates :caption, presence: true
     validates :tag_list, presence: true
     validates :image, presence: true
+    
 end
