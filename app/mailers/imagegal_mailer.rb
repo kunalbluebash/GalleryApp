@@ -10,8 +10,15 @@ class ImagegalMailer < ApplicationMailer
 
    
     def new_imagegal(imagegal)
-      
+      @imagegal = imagegal
       mail to: imagegal.user.email, subject: 'New Post Added'
     end
- 
+    def destroy_imagegal(imagegal)
+      @imagegal = imagegal
+      mail to: imagegal.user.email, subject: 'Post Deleted'
+    end
+    def update_imagegal(imagegal)
+      @imagegal = imagegal
+      mail to: imagegal.user.email, subject: 'Post Updated'
+    end
 end

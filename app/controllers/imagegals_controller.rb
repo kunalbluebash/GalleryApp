@@ -75,6 +75,7 @@ class ImagegalsController < ApplicationController
   def update
     respond_to do |format|
       if @imagegal.update(imagegal_params)
+        ImagegalMailer.update_imagegal(@imagegal).deliver_now
         format.html { redirect_to @imagegal, notice: 'Imagegal was successfully updated.' }
         format.json { render :show, status: :ok, location: @imagegal }
       else
@@ -120,6 +121,7 @@ class ImagegalsController < ApplicationController
     end
     
     respond_to do |format|
+      ImagegalMailer.destroy_imagegal(@imagegal).deliver_now
       format.html { redirect_to imagegals_url, notice: 'Imagegal was successfully destroyed.' }
       format.json { head :no_content }
     end
