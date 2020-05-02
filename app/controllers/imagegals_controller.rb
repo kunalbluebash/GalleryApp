@@ -1,6 +1,6 @@
 class ImagegalsController < ApplicationController
   before_action :set_imagegal, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:galleryimage, :tagged]
+  before_action :authenticate_user!, except: [:galleryimage, :tagged, :show]
   # GET /imagegals
   # GET /imagegals.json
   def index
@@ -24,13 +24,7 @@ class ImagegalsController < ApplicationController
   end
   def galleryimage
     
-    if current_user && current_user.admin?
-      @imagegals = Imagegal.all.page(params[:page])
-    elsif current_user
-      @imagegals = current_user.imagegals.page(params[:page])
-    else
-      @imagegals = Imagegal.all.page(params[:page])
-    end
+    @imagegals = Imagegal.all.page(params[:page])
 
     if valid_page?
       render template: "imagegals/galleryimage"

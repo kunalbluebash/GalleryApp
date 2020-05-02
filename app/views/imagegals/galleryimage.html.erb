@@ -20,7 +20,7 @@
                 <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
                 <p class="card-text"><b>Updated On:</b> <%= imagegal.updated_at.to_s.split(' ')[0] %></p>
                 <p class="card-text"><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></p>
-                
+                <p class="card-text text-center"><%= link_to 'View Post', imagegal, :class => 'btn btn-warning mt-2' %></p>
                 
             </div>
         </div>  
@@ -40,6 +40,7 @@
               <h5 class="mt-0"><%= imagegal.title %></h5>
               <%= imagegal.caption %>
               <p><i><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></i></p>
+              <%= link_to 'View Post', imagegal, :class => 'btn btn-warning mt-2' %>
             </div>
           </div>
         <% end %>

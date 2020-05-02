@@ -2,21 +2,25 @@
   
 
   <h4 id="notice"><%= notice %></h4>
-  <h1 class="my-5 text-center">Displaying Image Record</h1>
+  <h1 class="my-5 text-center">Displaying Image Gallery Post</h1>
   <div class="">
-    <p class="white">
+    <p class="white my-2">
       <strong>Title:</strong>
       <%= @imagegal.title %>
     </p>
     <div>
       <%= link_to image_tag(@imagegal.image, style:'width:300px', class:'img-fluid'),imagegals_path %>
     </div>
-    <p class="white">
+    <p class="white my-2" style="width:600px">
       <strong>Caption:</strong>
       <%= @imagegal.caption %>
     </p>
-    <p class="card-text"> <b>Tags :</b> <%= @imagegal.tag_list %></p>
+    <p class="card-text my-2"> <b>Tags :</b> <%= @imagegal.tag_list %></p>
   </div>
-  <%= link_to 'Edit', edit_imagegal_path(@imagegal), :class => 'btn btn-warning'  %> |
-  <%= link_to 'Back', imagegals_path, :class => 'btn btn-danger' %>
+  <% if current_user %>
+    <% if current_user.id == @imagegal.user_id || current_user.admin? %>
+      <%= link_to 'Edit', edit_imagegal_path(@imagegal), :class => 'btn btn-warning'  %> |
+      <%= link_to 'Back', imagegals_path, :class => 'btn btn-danger' %>
+    <% end %>
+  <% end %>
 </body>
