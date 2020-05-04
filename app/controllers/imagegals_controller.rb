@@ -104,18 +104,7 @@ class ImagegalsController < ApplicationController
   # DELETE /imagegals/1.json
   def destroy
     
-    if params[:attachment_id]
-      @imagegal.files.find_by_id(params[:attachment_id]).purge
-    
-    # handle purge all
-    elsif params[:purge]
-      @imagegal.files.purge
-      
-    # handle destroy resource
-    else
-      @imagegal.destroy
-      
-    end
+    @imagegal.destroy
     
     respond_to do |format|
       if current_user.admin?
@@ -126,6 +115,12 @@ class ImagegalsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def delete_upload
+    attachment = ActiveStorage::Attachment.find(params[:id])
+    attachment.purge # or use purge_later
+    redirect_back(fallback_location: imagegals_url)
+  end
+
 
   private
     def valid_page?

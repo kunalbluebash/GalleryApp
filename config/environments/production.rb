@@ -119,7 +119,7 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "commonemail638@gmail.com",
-    password: "01common01"
+    password: "01Common01"
   }
   # By default Rails will store a last write timestamp in the session. The
   # DatabaseSelector middleware is designed as such you can define your own

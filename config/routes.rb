@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
  
   resources :imagegals
+  resources :imagegals do
+    member do
+      delete :delete_upload
+    end
+  end
   root to: 'imagegals#galleryimage'
  
   # default_url_options :host => "localhost:3000"
