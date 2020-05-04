@@ -9,9 +9,16 @@
     <div class="col-lg-9 float-left">
       <div class="d-flex flex-row flex-wrap justify-content-start">
         <% @imagegals.each do |imagegal| %>
-          <div class="card mb-5 mr-3" style="width: 15rem;">
-              <%= image_tag(imagegal.image, class:'card-img-top img-fluid') if imagegal.image.attached? %>
-              <div class="card-body">
+          <div class="d-flex flex-row flex-wrap justify-content-center border p-3">
+              <% (0...imagegal.images.count).each do |image|%>
+                <div class="d-flex flex-column">
+                  <%= image_tag(imagegal.images[image], class:'img-fluid mx-2 shadow p-1 mb-2 bg-white rounded',style:'width:300px') %>
+                  
+                  
+                </div>
+              <% end %>
+
+              <div class="card-body text-center">
                   <h5 class="card-title"><%= imagegal.title %></h5>
                   <p class="card-text"><%= imagegal.caption %></p>
                   <p class="card-text"> <b>Tags :</b> <%= imagegal.tag_list %></p>
@@ -19,9 +26,9 @@
                   <p class="card-text"><b>Updated On:</b> <%= imagegal.updated_at.to_s.split(' ')[0] %></p>
                   <p class="card-text"><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></p>
                   
-                  <p class="card-text d-flex justify-content-start"><%= link_to 'Edit', edit_imagegal_path(imagegal), :class => 'btn btn-warning mr-1' %>
+                  <p class="card-text d-flex justify-content-center"><%= link_to 'Edit', edit_imagegal_path(imagegal), :class => 'btn btn-warning mr-1' %>
                   <%= link_to 'Show', imagegal, :class => 'btn btn-warning mr-1' %>
-                  <%= link_to 'Destroy', imagegal, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger mr-1' %>
+                  <%= link_to 'Delete Post', imagegal, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger mr-1' %>
                   </p>
                   
               </div>

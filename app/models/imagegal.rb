@@ -1,5 +1,5 @@
 class Imagegal < ApplicationRecord
-    has_one_attached :image
+    has_many_attached :images
     belongs_to :user
     paginates_per 8
 
@@ -8,6 +8,6 @@ class Imagegal < ApplicationRecord
     validates :title, presence: true
     validates :caption, presence: true
     validates :tag_list, presence: true
-    validates :image, presence: true
+    validates :images, presence: true
     
 end
