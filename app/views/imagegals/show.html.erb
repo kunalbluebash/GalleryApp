@@ -17,7 +17,9 @@
                   <h5 class="card-title"><%= @imagegal.title %></h5>
                   <p class="card-text"><%= @imagegal.caption %></p>
                   <p class="card-text"> <b>Tags :</b> <%= @imagegal.tag_list %></p>
-                  
+                  <p class="card-text"><b>Published On:</b> <%= @imagegal.created_at.to_s.split(' ')[0] %></p>
+                  <p class="card-text"><b>Updated On:</b> <%= @imagegal.updated_at.to_s.split(' ')[0] %></p>
+                  <p class="card-text"><b>Published By:</b> <%= @imagegal.user.email.split('@')[0] %></p>
                   
                   
               </div>
