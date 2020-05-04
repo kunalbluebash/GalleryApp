@@ -55,7 +55,7 @@ class ImagegalsController < ApplicationController
     respond_to do |format|0
       if @imagegal.save
         ImagegalMailer.new_imagegal(@imagegal).deliver_now
-        format.html { redirect_to @imagegal, notice: 'Imagegal was successfully created.' }
+        format.html { redirect_to @imagegal, notice: 'You have created a new Post!!' }
         format.json { render :show, status: :created, location: @imagegal }
       else
         format.html { render :new }
@@ -73,7 +73,7 @@ class ImagegalsController < ApplicationController
           ImagegalMailer.update_imagegal(@imagegal).deliver_now
         end
         
-        format.html { redirect_to @imagegal, notice: 'Imagegal was successfully updated.' }
+        format.html { redirect_to @imagegal, notice: 'Your Post was successfully updated!' }
         format.json { render :show, status: :ok, location: @imagegal }
       else
         format.html { render :edit }
@@ -111,7 +111,7 @@ class ImagegalsController < ApplicationController
         ImagegalMailer.destroy_imagegal(@imagegal).deliver_now
       end
       
-      format.html { redirect_to imagegals_url, notice: 'Imagegal was successfully destroyed.' }
+      format.html { redirect_to imagegals_url, notice: 'Your Post was Deleted' }
       format.json { head :no_content }
     end
   end

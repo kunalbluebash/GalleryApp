@@ -2,7 +2,7 @@
   <h4 id="notice"><%= notice %></h4>
 
   <div class="container">
-    <h1 class="text-center my-5">Gallery App</h1>
+    <h1 class="text-center my-5">My Posts</h1>
     <% if current_user %>
       <h4 class="mb-5">Welcome <%= current_user.email.split('@')[0]%></h4>
     <% end %>
@@ -28,7 +28,7 @@
                   
                   <p class="card-text d-flex justify-content-center"><%= link_to 'Edit', edit_imagegal_path(imagegal), :class => 'btn btn-warning mr-1' %>
                   <%= link_to 'Show', imagegal, :class => 'btn btn-warning mr-1' %>
-                  <%= link_to 'Delete Post', imagegal, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger mr-1' %>
+                  <%= link_to 'Delete Post', imagegal, method: :delete, data: { confirm: 'Please Delete all the images first then delete the post!!' }, :class => 'btn btn-danger mr-1' %>
                   </p>
                   
               </div>
