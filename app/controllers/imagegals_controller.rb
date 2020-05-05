@@ -133,6 +133,6 @@ class ImagegalsController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def imagegal_params
-      params.require(:imagegal).permit(:title, :caption, :tag_list, images: [])
+      params.require(:imagegal).permit(:title, :caption, :tag_list, :public, images: [])
     end
 end
