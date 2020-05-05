@@ -11,30 +11,31 @@
     <% end %>
     <h2 class="text-center mb-3">All Posts</h2>
     <div class="d-flex flex-row flex-wrap justify-content-center">
-       <% @imagegals.each do |imagegal| %>
-          <div class="d-flex flex-row flex-wrap justify-content-center border p-3 mb-3" style="width:800px;">
-              
-              <% (0...imagegal.images.count).each do |image|%>
-                <div class="d-flex flex-row">
-                  <%= image_tag(imagegal.images[image], class:'img-fluid mx-2 shadow p-1 mb-2 bg-white rounded',style:'width:300px') %>
-                </div>  
+        <% @imagegals.each do |imagegal| %>
+          <% if imagegal.public? %>
+              <div class="d-flex flex-row flex-wrap justify-content-center border p-3 mb-3" style="width:800px;">
                   
-              <% end %>
+                  <% (0...imagegal.images.count).each do |image|%>
+                    <div class="d-flex flex-row">
+                      <%= image_tag(imagegal.images[image], class:'img-fluid mx-2 shadow p-1 mb-2 bg-white rounded',style:'width:300px') %>
+                    </div>  
+                      
+                  <% end %>
 
-              <div class="card-body text-center" style="width:800px;">
-                  <h5 class="card-title"><%= imagegal.title %></h5>
-                  <p class="card-text"><%= imagegal.caption %></p>
-                  <p class="card-text"> <b>Tags :</b> <%= imagegal.tag_list %></p>
-                  <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
-                  <p class="card-text"><b>Updated On:</b> <%= imagegal.updated_at.to_s.split(' ')[0] %></p>
-                  <p class="card-text"><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></p>
-                  
-                  
-                  
-              </div>
-          </div>  
+                  <div class="card-body text-center" style="width:800px;">
+                      <h5 class="card-title"><%= imagegal.title %></h5>
+                      <p class="card-text"><%= imagegal.caption %></p>
+                      <p class="card-text"> <b>Tags :</b> <%= imagegal.tag_list %></p>
+                      <p class="card-text"><b>Published On:</b> <%= imagegal.created_at.to_s.split(' ')[0] %></p>
+                      <p class="card-text"><b>Updated On:</b> <%= imagegal.updated_at.to_s.split(' ')[0] %></p>
+                      <p class="card-text"><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></p>
+                      
+                      
+                      
+                  </div>
+              </div>  
+          <% end %>
         <% end %>
-      
     </div>
     
     <div class="d-flex flex-row justify-content-center"><%= paginate @imagegals %></div>
@@ -43,15 +44,17 @@
       <h3 class="my-4">Recent Posts</h3>
       <div class="d-flex flex-column flex-wrap">
         <% @imagegals.order(id: :desc).limit(5).each do |imagegal| %>
-          <div class="media my-3 flex-row p-3 border border-secondary">
-           
-            <div class="media-body">
-              <h5 class="mt-0"><%= imagegal.title %></h5>
-              <%= imagegal.caption %>
-              <p><i><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></i></p>
-              <%= link_to 'View Post', imagegal, :class => 'btn btn-warning mt-2' %>
+          <% if imagegal.public? %>
+            <div class="media my-3 flex-row p-3 border border-secondary">
+            
+              <div class="media-body">
+                <h5 class="mt-0"><%= imagegal.title %></h5>
+                <%= imagegal.caption %>
+                <p><i><b>Published By:</b> <%= imagegal.user.email.split('@')[0] %></i></p>
+                <%= link_to 'View Post', imagegal, :class => 'btn btn-warning mt-2' %>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
             
