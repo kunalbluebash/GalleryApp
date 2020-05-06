@@ -20,8 +20,11 @@
                   <p class="card-text"><b>Published On:</b> <%= @imagegal.created_at.to_s.split(' ')[0] %></p>
                   <p class="card-text"><b>Updated On:</b> <%= @imagegal.updated_at.to_s.split(' ')[0] %></p>
                   <p class="card-text"><b>Published By:</b> <%= @imagegal.user.email.split('@')[0] %></p>
-                  <p class="card-text"><b>Published:</b> <%= @imagegal.public %></p>
-                  
+                  <% if current_user %>
+                    <% if current_user.email == @imagegal.user.email %>
+                      <p class="card-text"><b>Published:</b> <%= @imagegal.public %></p>
+                    <% end %>
+                  <% end %>
               </div>
           </div>  
       
@@ -34,5 +37,9 @@
           <%= link_to 'Back', imagegals_path, :class => 'btn btn-danger' %>
         </div>
       <% end %>
+    <% else %>
+      <div class="text-center mt-3">
+        <%= link_to 'Back', root_path, :class => 'btn btn-danger' %>
+      </div>
     <% end %>
 </body>
